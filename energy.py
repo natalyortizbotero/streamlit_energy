@@ -11,14 +11,14 @@ from sklearn.linear_model import Lasso
 from sklearn.ensemble import RandomForestRegressor
 
 
-dframe = pd.read_csv("/Users/natalyortizbotero/Downloads/eco2mix-regional-cons-def.csv", sep=";")
+#dframe = pd.read_csv("eco2mix-regional-cons-def.csv", sep=";")
 
 st.sidebar.write("## Menu")
 
 pages = ["Project Context","Datasets","Analysis", "ML Methodology", "Predictions", "Conclusion"]
 page = st.sidebar.radio("Go to", pages)
 
-st.sidebar.image("/Users/natalyortizbotero/Desktop/gline.png")
+st.sidebar.image("gline.png")
 
 st.sidebar.title("Team Members")
 st.sidebar.markdown("**Nataly Ortiz Botero, [LinkedIn](https://www.linkedin.com/in/natalyortizbotero/)**")
@@ -29,7 +29,7 @@ st.sidebar.write("**:green[Data Analyst Bootcamp - February 2023 Promotion]**")
 
 if page==pages[0]:
     st.title("Renewable Energy in France")
-    st.image("/Users/natalyortizbotero/Desktop/renewable_img.png")
+    st.image("renewable_img.png")
 
     st.write("## Objective")
 
@@ -82,7 +82,7 @@ elif page==pages[1]:
                     "the modality of the columns.")
         st.write("DataFrame Extract:")
 
-        st.dataframe(dframe.head(10))
+        #st.dataframe(dframe.head(10))
 
         st.subheader("6. Data Processing")
         st.markdown("**Missing values and columns dropped**")
@@ -93,10 +93,10 @@ elif page==pages[1]:
         st.markdown(" Most of the missing values disappeared as they belonged to columns "
                     "that were dropped. The rest of the missing values were replaced by *zeros* as we are implying that there is no production.")
 
-        if st.checkbox("Show missing values"):
-            mv = pd.DataFrame(dframe.isna().sum(), columns=['Number_missing'])
-            mv['Percentage_missing'] = np.round(100 * mv['Number_missing'] / len(dframe), 2)
-            st.dataframe(mv)
+        #if st.checkbox("Show missing values"):
+            #mv = pd.DataFrame(dframe.isna().sum(), columns=['Number_missing'])
+            #mv['Percentage_missing'] = np.round(100 * mv['Number_missing'] / len(dframe), 2)
+            #st.dataframe(mv)
 
         st.markdown("**Adding New Variables**")
         st.markdown(
@@ -141,7 +141,7 @@ elif page==pages[1]:
         st.markdown("This data set has 2.211.569 records but not all of them were used. This data set was merged with the principal "
                     "dataset on the date, region, and region code.")
 
-        df1 = pd.read_csv("/Users/natalyortizbotero/Downloads/meteo.csv", sep=",")
+        df1 = pd.read_csv("meteo.csv", sep=",")
         st.write("DataFrame Extract:")
 
         st.dataframe(df1.head(10))
@@ -180,37 +180,37 @@ elif page==pages[2]:
         selected_option = st.radio("Select a time unit:", options)
 
         if selected_option == 'Year':
-            st.image("/Users/natalyortizbotero/Desktop/energyyear.png")
+            st.image("energyyear.png")
             st.markdown(
                 "Energy consumption has a big decrease in 2020 most probably because of the covid lockdowns "
                 "and companies being closed. It starts going up again in 2021 and 2022. We should still point out that for 2022"
                 " we only have data until 31st of May.")
         elif selected_option == 'Month':
-            st.image("/Users/natalyortizbotero/Desktop/energymonth.png")
+            st.image("energymonth.png")
             st.markdown(
                 "Energy consumption is higher in colder months (Winter), and its highest are January "
                 "and February as they are usually the coldest months of the year.")
         elif selected_option == 'Day':
-            st.image("/Users/natalyortizbotero/Desktop/energyday.png")
+            st.image("energyday.png")
             st.markdown(
                 "The energy consumption decreases on the weekend. We can potentially say that this "
                 "trend is because offices, company warehouses, and such are closed.")
         elif selected_option == 'Hour':
-            st.image("/Users/natalyortizbotero/Desktop/energyhour.png")
+            st.image("energyhour.png")
             st.markdown("Energy consumption decreases during the night, regularly the time we are sleeping.")
 
     with tab2:
         st.subheader("Regional Analysis")
         st.markdown("**Consumption by Region**")
-        st.image("/Users/natalyortizbotero/Desktop/regions.png")
+        st.image("regions.png")
         st.markdown("The two regions that have the biggest consumption of energy are *Île-de-France* and "
                     "*Auvergne-Rhône-Alpes* as in this two regions there are the two major cities "
                     "of agglomeration by population, with Paris (10,858,874 inhabitants) and Lyon (1,693,159 inhabitants).")
 
         st.markdown("**Consumption vs. Production by Region**")
-        st.image("/Users/natalyortizbotero/Desktop/avregions1.png")
-        st.image("/Users/natalyortizbotero/Desktop/avregions2.png")
-        st.image("/Users/natalyortizbotero/Desktop/avregions3.png")
+        st.image("avregions1.png")
+        st.image("avregions2.png")
+        st.image("avregions3.png")
         st.markdown("There are 4 regions that have a high production of energy. Theee regions "
                     "are: *Auvergne-Rhône-Alpes*, *Centre-Val de loire*, *Grand Est* and *Normandie* and indeed these regions"
                     "produce 70% of the total energy in France.")
@@ -220,23 +220,23 @@ elif page==pages[2]:
         st.markdown("For this project our main focus was to understand how France is producing renewable energies, in which"
                     "regions is the highest production and how this is changing over the years.")
         st.markdown("**Energy production by type**")
-        st.image("/Users/natalyortizbotero/Desktop/shares.png")
+        st.image("shares.png")
         st.markdown("The primary energy production in France is *Nuclear* but we can observe a slow increase "
                     "in the share of renewable energies and a decrease in the share of nuclear "
                     "energy through the years.")
         st.markdown("**Nuclear and Renewable Energies by Region**")
         st.write(":blue[**Nuclear Energy**]")
-        st.image("/Users/natalyortizbotero/Desktop/nuclearprod.png")
+        st.image("nuclearprod.png")
         st.markdown("As the primary energy production in France is *Nuclear* we analysed its production by Region with the "
                     "2021 (the most recent full data in our dataset) and the regions that produced the most Nuclear Energy "
                     "are: *Auvergne-Rhone-Alpes*, *Centre-Val de Loire*, *Normandie* and *Grand Est* with a total of "
                     "77% of the country production.")
         st.write(":green[**Renewable Energies**]")
-        st.image("/Users/natalyortizbotero/Desktop/renewableprod.png")
+        st.image("renewableprod.png")
         st.markdown( "The regions that produced the most Renewable Energy are *Auvergne-Rhone-Alpes*, *Grand Est*"
                      " and *Occitanie* with an aggregate of 55% of the country production.")
         st.markdown("**Renewable energies production vs. consumption**")
-        st.image("/Users/natalyortizbotero/Desktop/quaterly.png")
+        st.image("quaterly.png")
         st.markdown("The gap between production of green energy and total consumption is very high. Nonetheless the "
                     "energy production from renewable sources is slowly growing through the years.")
 
@@ -261,7 +261,7 @@ elif page == pages[3]:
     - ***Dropped variables after the merge***: *Region, Date* and *Date_Hour* columns were dropped as we could use the Region Code(ID) instead, and for the Date columns we used the seasonal variables (Year, Month, Day, Hour) instead for better performance. We will analyse *18 variables*.
      """)
     st.markdown("**Final Dataframe for ML Analysis:**")
-    df = pd.read_csv("/Users/natalyortizbotero/Downloads/new_clean.csv", index_col=0)
+    df = pd.read_csv("new_clean.csv", index_col=0)
     st.dataframe(df.head())
 
     options = ["Show Summary", 'Show Dimensions']
@@ -281,7 +281,7 @@ elif page == pages[4]:
                 "prediction results separately for two targets - Wind and Solar energy producion, in 4 models: *Linear Regression, "
                 "Decision Tree, Lasso* and *Random Forest*.")
 
-    df = pd.read_csv("/Users/natalyortizbotero/Downloads/new_clean.csv", index_col=0)
+    df = pd.read_csv("new_clean.csv", index_col=0)
     data1 = df.drop("Wind_MW", axis=1)
     target1 = df["Wind_MW"]
 

@@ -284,11 +284,20 @@ elif page == pages[4]:
     df = pd.read_csv("new_clean.csv", index_col=0)
     data1 = df.drop("Wind_MW", axis=1)
     target1 = df["Wind_MW"]
+    data2 = df.drop("Solar_MW", axis=1)
+    target2 = df["Solar_MW"]
 
+    target_choice = st.selectbox(label = "Target Selection", options = ["Wind_MW", "Solar_MW"])
     model_choice = st.selectbox(label = "Model Selection", options = ["Linear Regression", "Decision Tree", "Lasso", "Random Forest"])
 
-    def train_model(model_choice, size = 0.8):
-        X_train, X_test, y_train, y_test = train_test_split(data1, target1, shuffle=False, train_size = size)
+    def train_model(model_choice, target_choice, size = 0.8):
+        if target_choice == "Wind_MW":
+            data = data1
+            target = target1
+        else:
+            data = data2
+            target = target2
+        X_train, X_test, y_train, y_test = train_test_split(data, target, shuffle=False, train_size = size)
         if model_choice == "Linear Regression":
             model = LinearRegression()
         elif model_choice == "Decision Tree":
@@ -301,7 +310,7 @@ elif page == pages[4]:
         score = model.score(X_train, y_train)
         return score
 
-    st.write('Score test', train_model(model_choice))
+    st.write('Score test', train_model(model_choice, target_choice))
 
 elif page == pages[5]:
     st.write("## Conclusion")

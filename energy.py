@@ -13,6 +13,7 @@ from sklearn.ensemble import RandomForestRegressor
 
 #dframe = pd.read_csv("eco2mix-regional-cons-def.csv", sep=";")
 
+st.sidebar.title("Renewable Energy in France")
 st.sidebar.write("## Menu")
 
 pages = ["Project Context","Datasets","Analysis", "ML Methodology", "Predictions", "Conclusion"]

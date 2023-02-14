@@ -323,8 +323,9 @@ elif page == pages[4]:
 elif page == pages[5]:
     st.write("## Conclusion")
     st.markdown("In conclusion, we can observe that France is making a transition to Renewable Energies throught the last years and will "
-                "continue to grow during the coming years. One of the reason is also because France is one of the first european countries "
-                "imposing laws to fight climate change and reduce carbon emmissions thanks to the use of sustainable energies.")
+                "continue to grow during the coming years. One of the reason is also because France will have to reach 33 percent of renewable"
+                "energies by 2030 to meet the objectives of the climate law passed in July 2021. This to fight climate change and reduce carbon "
+                "emmissions thanks to the use of sustainable energies.")
     st.markdown("Regarding the results of our Machine Learning model predictions, we can demonstrate the effectiveness of "
                 "Decision tree and Random forest classification in the prediction of Wind and Solar energy production. With "
                 "high R2 scores, low MAE, RMSE, and very good scores on the test data sets.")

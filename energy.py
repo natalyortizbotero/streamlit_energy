@@ -83,7 +83,7 @@ elif page==pages[1]:
                     "the modality of the columns.")
         st.write("DataFrame Extract:")
 
-        #st.dataframe(dframe.head(10))
+        st.image("df.png")
 
         st.subheader("6. Data Processing")
         st.markdown("**Missing values and columns dropped**")
@@ -94,10 +94,8 @@ elif page==pages[1]:
         st.markdown(" Most of the missing values disappeared as they belonged to columns "
                     "that were dropped. The rest of the missing values were replaced by *zeros* as we are implying that there is no production.")
 
-        #if st.checkbox("Show missing values"):
-            #mv = pd.DataFrame(dframe.isna().sum(), columns=['Number_missing'])
-            #mv['Percentage_missing'] = np.round(100 * mv['Number_missing'] / len(dframe), 2)
-            #st.dataframe(mv)
+        if st.checkbox("Show missing values"):
+            st.image("mv.png")
 
         st.markdown("**Adding New Variables**")
         st.markdown(
@@ -324,8 +322,11 @@ elif page == pages[4]:
 
 elif page == pages[5]:
     st.write("## Conclusion")
-    st.markdown("In conclusion, the results of our machine learning model predictions demonstrate the effectiveness of "
-                "Decision tree and Random forest classification in prediction of Wind and Solar energy production. With "
+    st.markdown("In conclusion, we can observe that France is making a transition to Renewable Energies throught the last years and will "
+                "continue to grow during the coming years. One of the reason is also because France is one of the first european countries "
+                "imposing laws to fight climate change and reduce carbon emmissions thanks to the use of sustainable energies.")
+    st.markdown("Regarding the results of our Machine Learning model predictions, we can demonstrate the effectiveness of "
+                "Decision tree and Random forest classification in the prediction of Wind and Solar energy production. With "
                 "high R2 scores, low MAE, RMSE, and very good scores on the test data sets.")
     st.markdown("Overall, this study provides evidence that Decision tree and Random Forest classification are a viable "
                 "solution for predicting Solar and Wind energy production based on weather data, and can be a useful tool "

@@ -288,16 +288,17 @@ elif page == pages[4]:
     target2 = df["Solar_MW"]
 
     target_choice = st.selectbox(label = "Target Selection", options = ["Wind_MW", "Solar_MW"])
-    model_choice = st.selectbox(label = "Model Selection", options = ["Linear Regression", "Decision Tree", "Lasso", "Random Forest"])
+    model_choice = st.selectbox(label="Model Selection",
+                                options=["Linear Regression", "Decision Tree", "Lasso", "Random Forest"])
 
-    def train_model(model_choice, target_choice, size = 0.8):
+    def train_model(model_choice, target_choice, size=0.8):
         if target_choice == "Wind_MW":
             data = data1
             target = target1
-        else:
+        elif target_choice == "Solar_MW":
             data = data2
             target = target2
-        X_train, X_test, y_train, y_test = train_test_split(data, target, shuffle=False, train_size = size)
+        X_train, X_test, y_train, y_test = train_test_split(data, target, shuffle=False, train_size=size)
         if model_choice == "Linear Regression":
             model = LinearRegression()
         elif model_choice == "Decision Tree":
@@ -307,16 +308,24 @@ elif page == pages[4]:
         elif model_choice == 'Random Forest':
             model = RandomForestRegressor()
         model.fit(X_train, y_train)
-        score = model.score(X_train, y_train)
-        return score
+        y_pred = model.predict(X_test)
+        score1 = model.score(X_train, y_train)
+        score2 = model.score(X_test, y_test)
+        r2 = r2_score(y_test, y_pred)
+        mae = mean_absolute_error(y_test, y_pred)
+        mse = mean_squared_error(y_test, y_pred)
+        return score1, score2, r2, mae, mse
 
-    st.write('Score test', train_model(model_choice, target_choice))
+    st.write('Score on train set:', round(train_model(model_choice, target_choice)[0],3), "/", "Score on test set:", round(train_model(model_choice, target_choice)[1],3))
+    st.write('**R2** on test set:', round(train_model(model_choice, target_choice)[2],3))
+    st.write('**MAE** on test set:', round(train_model(model_choice, target_choice)[3],3))
+    st.write('**RMSE** on test set:', round(np.sqrt(train_model(model_choice, target_choice)[4]),3))
 
 elif page == pages[5]:
     st.write("## Conclusion")
     st.markdown("In conclusion, the results of our machine learning model predictions demonstrate the effectiveness of "
                 "Decision tree and Random forest classification in prediction of Wind and Solar energy production. With "
-                "high R2 scores, low MAE, RMSE, and very good scores on the train data.")
+                "high R2 scores, low MAE, RMSE, and very good scores on the test data sets.")
     st.markdown("Overall, this study provides evidence that Decision tree and Random Forest classification are a viable "
                 "solution for predicting Solar and Wind energy production based on weather data, and can be a useful tool "
                 "in making task-related decisions or actions.")

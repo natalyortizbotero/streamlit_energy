@@ -94,7 +94,7 @@ elif page==pages[1]:
         st.markdown(" Most of the missing values disappeared as they belonged to columns "
                     "that were dropped. The rest of the missing values were replaced by *zeros* as we are implying that there is no production.")
 
-        if st.checkbox("Show missing values"):
+        if st.checkbox("Show first rows of missing values"):
             st.image("mv.png")
 
         st.markdown("**Adding New Variables**")
